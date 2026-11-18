@@ -2,7 +2,8 @@ name: Deploy Documentation
 
 on:
   push:
-    branches: [develop]
+    branches:
+      - main
     paths:
       - 'docs/**'
       - '.github/workflows/deploy-docs.yaml'
@@ -20,28 +21,18 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Setup PNPM Environment
-        uses: ./.github/actions/setup-pnpm-env
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          node-version: 22
-          frozen-lockfile: 'false'
+          fetch-depth: 0
 
-      - name: Generate Global Documents
-        run: |
-          pnpm docs:generate:changelog
-          pnpm docs:generate:roadmap
+      - name: Setup Node.js and pnpm environment
+        uses: ./.github/actions/setup-pnpm-env
 
-      - name: Commit and Push Compiled Documents
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add CHANGELOG.md ROADMAP.md
-          if git diff --staged --quiet; then
-            echo "No changes to CHANGELOG.md or ROADMAP.md"
-          else
-            git commit -m "docs: update root CHANGELOG.md and ROADMAP.md [skip ci]"
-            git push
-          fi
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build documentation
         run: pnpm docs:build
@@ -49,7 +40,7 @@ jobs:
           DOCUSAURUS_BUCKET_URL: ${{ secrets.DOCUSAURUS_BUCKET_URL }}
 
       - name: Deploy to Cloudflare Pages
-        uses: cloudflare/wrangler-action@v3
+        uses: cloudflare/wrangler-action@392082e81ffab94d32600908861037346132b4f2 # v3.14.0
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

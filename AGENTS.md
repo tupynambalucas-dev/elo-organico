@@ -1,67 +1,71 @@
-# Elo Orgânico - Monorepo AI Master Context & Router
+<context-hierarchy>
+  <parent src="../../AGENTS.md" type="meta-repository" />
+  <system-instruction>
+    AGENT: You are operating in the sovereign elo-organico commercial monorepo of tupynambalucas-dev. If you have not read ../../AGENTS.md in this session, read it for global ecosystem constraints.
+  </system-instruction>
+</context-hierarchy>
 
-This file establishes the authoritative monorepo context, global rules, and interaction standards for AI agents working within the **Elo Orgânico** codebase. It acts as the central entrypoint and routes agents to local workspace context files.
+# Elo Orgânico Platform Agent Context
 
----
+This document serves as the root context router (Layer 1) for AI agents operating within
+the `tupynambalucas-dev/elo-organico` commercial software monorepo.
 
-## Monorepo Navigation & Context Routing
+## Architectural Boundaries
 
-To understand local requirements, directories, and stack-specific behaviors, you MUST read the respective local context file before working inside a workspace:
+- **Ecosystem Taxonomy**: Organic food distribution management, community marketplace cycles, and tenant SaaS portal.
+- **Monorepo Engine**: Turborepo with strict pnpm catalogs (`catalogMode: 'strict'`).
+- **Domain Separation**:
+  - `instance/`: Community Shop operations, React SPA, Fastify API, BullMQ cycle worker, and MongoDB persistence.
+  - `portal/`: Multi-tenant SaaS orchestration, platform landing page, global tenant gateway foundation.
+  - `studio/`: Brand design tokens, SVG icon library, self-hosted Penpot services, and 3D assets.
+  - `tools/`: Local MCP server adapters, Docker tooling, containerized agent runtime environments.
+  - `docs/`: Docusaurus technical documentation portal (Handbook, Architecture, and Roadmaps).
+  - `shared/`: Common tooling, ESLint configs, Prettier presets, and Husky git validation hooks.
 
-- **Instance Context (Community Shop)**: Refer to the local [instance/AGENTS.md](./instance/AGENTS.md) for community core, api, and web applications.
-- **Portal Context (SaaS Platform Hub)**: Refer to the local [portal/AGENTS.md](./portal/AGENTS.md) for platform core, api, and web applications.
-- **Tools Context (AI & Dev Automation)**: Refer to the local [tools/AGENTS.md](./tools/AGENTS.md) for SSE Model Context Protocol adapters and containerized agent environments.
-- **Studio Context (Visual Identity & Design System)**: Refer to the local [studio/AGENTS.md](./studio/AGENTS.md) for color tokens, SVG icon library, and self-hosted Penpot setup.
-- **Handbook Documentation**: Refer to general guides in [docs/handbook/](./docs/handbook/):
-  - [Introduction](./docs/handbook/intro.mdx)
-  - [Orchestration Reference](./docs/handbook/architecture/infra-orchestration-deploy/orchestration.mdx)
-- **Core Platform Roadmap**: Refer to the core roadmap in [docs/roadmap/01-core.md](./docs/roadmap/01-core.md).
+## Workspace Navigation
 
----
+- [README.md](./README.md): Primary platform documentation and operational runbook.
+- [instance/README.md](./instance/README.md): Community instance application architecture.
+- [instance/AGENTS.md](./instance/AGENTS.md): Local context router for community instance.
+- [portal/README.md](./portal/README.md): SaaS platform portal architecture.
+- [portal/AGENTS.md](./portal/AGENTS.md): Local context router for SaaS platform portal.
+- [studio/README.md](./studio/README.md): Design tokens, SVG assets, and Penpot setup.
+- [studio/AGENTS.md](./studio/AGENTS.md): Local context router for creative studio.
+- [tools/README.md](./tools/README.md): MCP gateway and containerized agent tooling.
+- [tools/AGENTS.md](./tools/AGENTS.md): Local context router for developer automation.
+- [docs/README.md](./docs/README.md): Docusaurus engineering knowledge base documentation.
+- [shared/README.md](./shared/README.md): Shared configuration presets and Git validation hooks.
 
-## AI Specialized Skills Routing
+## Governance Standards
 
-To guarantee documentation quality, strict syntax adherence, and local layout standards, you MUST activate and follow the corresponding specialized skill before modifying any technical documents or context router files:
+- **Branching Model**: Single-Branch GitHub Flow on `main`. Short-lived branches MUST use Conventional Commit prefixes (`feat/`, `fix/`, `docs/`, `chore/`, `refactor/`, `ci/`, `perf/`, `test/`, `build/`, `style/`, `revert/`, `hotfix/`).
+- **Cryptographic Signature**: All Git commits and annotated tags MUST be signed with SSH (`git commit -S -m "..."`).
+- **Conventional Commits**: All commit messages must follow `<type>[optional (<scope>)][!]: <description>` (`<= 72` chars target, `<= 100` chars maximum).
+- **Zero-Emoji Policy**: Emojis are strictly forbidden across all code, PRs, comments, documentation, and agent interactions.
+- **Secret Hygiene**: Never commit plaintext tokens. Sourced via Infisical (`infisical run -- ...`) or local `.env` files.
+- **Language Policy**: Code, comments, commit messages, and documentation must be written strictly in en-US.
 
-- **General Markdown files (`.md`, `README.md`, except `AGENTS.md` files)**: Load and follow the [markdown-expert](./.agents/skills/markdown-expert/SKILL.md) skill.
-- **Docusaurus Docs workspace (`docs/`)**: Load and follow the [docusaurus-kb-expert](./.agents/skills/docusaurus-kb-expert/SKILL.md) skill for all workspace documentation, configurations, and Docusaurus components.
-- **AI Context Router files (`AGENTS.md`)**: Load and follow the [agent-router-expert](./.agents/skills/agent-router-expert/SKILL.md) skill.
+## Architectural Plans & Artifact Dual-Storage Standard
 
----
+Architectural blueprints, technical analyses, and master plans follow strict enterprise storage standards:
 
-## Global Guardrails (Non-Negotiable)
+- **Storage Location**: Blueprints, analyses, and reports reside in `<target-repo>/.agents/plans/<artifact-slug>/` (or `<target-repo>/.agents/plans/<artifact-slug>.md`) within the respective repository for which the artifact is created. Creating a `plans/` directory at the root of any repository is strictly prohibited.
+- **Topologies**: Topology 1 (Single-File Artifact) for atomic refactors, analyses, and reports; Topology 2 (Multi-Artifact Suite) for multi-domain frameworks with master `README.md` and numbered domain documents.
+- **Dual-Storage Invariant**: Whenever an agent creates an architectural plan, analysis, or report artifact in the Antigravity conversation directory (`<appDataDir>/brain/<conversation-id>/`), an identical synchronized copy MUST ALWAYS be mirrored in `<target-repo>/.agents/plans/<artifact-slug>/` (or `<target-repo>/.agents/plans/<artifact-slug>.md`).
+- **Ignore & Index Triad**: All repositories ignore `.agents/plans/` in `.gitignore`, while explicitly un-ignoring it in `.ignore` and `.rgignore` (`!.agents/plans/`, `!.agents/plans/**`) and setting `"search.useIgnoreFiles": false` in `.vscode/settings.json` so files can always be attached with `@`.
 
-All development across all workspaces MUST strictly comply with these core engineering standards:
+## Required Skills
 
-1. **Strict English-First**: All technical documentation, READMEs, architectural briefs, commit messages, code comments, and variable names/logic MUST be written in English (en-US). Exceptions are limited to local translations (i.e. `i18n` dictionary JSON files) or explicit mocks.
-2. **Zero Emojis**: Emojis are strictly forbidden in all source files, READMEs, comments, and project documentation to maintain a professional, corporate appearance.
-3. **Zero Placeholders**: Never include empty sections, "TODO" or "TBD" notes in code comments or documentation. If a section or parameter is not yet implemented, omit it or explain its current status explicitly.
-4. **Strict Boolean Logic**: Expressions and conditions must be explicit. Use `if (value === true)` or `if (value !== undefined)`, never `if (value)`. In React JSX, always use explicit comparisons: `{isValid === true && <Component />}` to prevent rendering unwanted `0` or `NaN`.
-5. **No Floating Promises**: Never leave asynchronous calls unawaited without handling them. Use the `void` operator for intentional unawaited background processes: `void asyncFn()`.
-6. **Core First Design**: All models, validation contracts, DTO schemas, and types MUST be declared in the bounded context's `packages/core` library before being imported or used in downstream applications (`apps/api`, `apps/web`).
+Agents operating within this repository MUST autonomously engage the corresponding domain skills:
 
----
-
-## Unified Orchestration Commands
-
-Manage the monorepo using standard PNPM commands from the root:
-
-- `pnpm instance:dev`: Starts the local community stack (databases in Docker, API + Web on host).
-- `pnpm instance:up`: Starts community local databases (MongoDB replica set + Redis) only.
-- `pnpm instance:down`: Stops the community local database containers.
-- `pnpm portal:dev`: Starts the local platform stack (databases in Docker, API + Web on host).
-- `pnpm portal:down`: Stops the platform local database containers.
-- `pnpm docs:dev`: Starts the local Docusaurus Knowledge Base development server.
-- `pnpm typecheck`: Validates TypeScript type-safety across the entire monorepo in parallel.
-- `pnpm lint`: Runs ESLint validation for all workspaces.
-- `pnpm build`: Performs a full production build of all applications and libraries.
-
----
-
-## AI Interaction Persona
-
-- **Role**: Senior Software Engineer / Lead Architect.
-- **Tone**: Concise, direct, and technical. No conversational filler or introductory chatter.
-- **Proactiveness**: Persist through obstacles, diagnose failures, write tests, and ensure implementation completeness.
-- **Validation**: Always verify changes via `pnpm lint` and `pnpm typecheck` before concluding a task (only required when source code or configurations are modified; no need to execute these when only documentation, rules, or skill files are changed).
-- **Double-Check**: Always use `git diff` after modifications to ensure precision, avoid regressions, and verify a clean working tree.
+- **Atelier Plugin (`@tupynambalucas-dev/plugin-atelier`)**:
+  - **`plan-architect`**: Designing, structuring, authoring, and auditing architectural plans, technical analyses, and governance reports following the dual-storage standard.
+  - **`router-architect`**: Authoring, auditing, or updating hierarchical `AGENTS.md` context routers.
+- **Repository Governance Plugin (`@tupynambalucas-dev/plugin-repo`)**:
+  - **`monorepo-architect`**: Maintaining monorepo configurations, pnpm catalogs, package scopes, and Turborepo pipelines.
+  - **`readme-architect` & `readme-auditor`**: Authoring or auditing `README.md` files and preserving recursive navigation.
+  - **`community-health-architect`**: Auditing and aligning governance and health files.
+- **GitHub Flow Plugin (`@tupynambalucas-dev/plugin-github-flow`)**:
+  - **`github-flow-operator`**: Executing Git branching, SSH-signed Conventional Commits, and PR lifecycle workflows.
+- **Secrets Plugin (`@tupynambalucas-dev/plugin-secrets`)**:
+  - **`infisical-vault-operator`**: Managing secrets, environment variables, and Machine Identity tokens.
