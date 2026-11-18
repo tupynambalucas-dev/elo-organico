@@ -1,38 +1,39 @@
-name: 'Setup PNPM Environment'
-description: 'Installs Node, PNPM, and configures dependency caching'
+name: 'Setup Node.js & pnpm'
+description: 'Configures Node.js, pnpm binary, and global virtual store caching'
 
 inputs:
   node-version:
-    description: 'Node.js version to use'
+    description: 'Node.js runtime version'
     required: false
     default: '22'
-  frozen-lockfile:
-    description: 'Whether to enforce frozen-lockfile during install'
+  pnpm-version:
+    description: 'pnpm package manager version'
     required: false
-    default: 'true'
+    default: '11.1.2'
 
 runs:
   using: 'composite'
   steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v6
-      with:
-        fetch-depth: 0
-
     - name: Install pnpm
-      uses: pnpm/action-setup@v6
+      uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320 # v4.1.0
+      with:
+        version: ${{ inputs.pnpm-version }}
 
-    - name: Setup Node
-      uses: actions/setup-node@v6
+    - name: Setup Node.js
+      uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
       with:
         node-version: ${{ inputs.node-version }}
-        cache: 'pnpm'
+        registry-url: 'https://npm.pkg.github.com'
+        scope: '@tupynambalucas-dev'
 
-    - name: Install Dependencies
+    - name: Get pnpm store directory
       shell: bash
-      run: |
-        if [ "${{ inputs.frozen-lockfile }}" = "true" ]; then
-          pnpm install --frozen-lockfile
-        else
-          pnpm install
-        fi
+      run: echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+    - name: Setup pnpm cache
+      uses: actions/cache@d4323d4df104b026a6aa633fdb11d772146be0bf # v4.2.2
+      with:
+        path: ${{ env.STORE_PATH }}
+        key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+        restore-keys: |
+          ${{ runner.os }}-pnpm-store-

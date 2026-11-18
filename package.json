@@ -7,7 +7,7 @@
   "homepage": "https://tupynambalucas.dev",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tupynambalucas/elo-organico.git"
+    "url": "git+https://github.com/tupynambalucas-dev/elo-organico.git"
   },
   "packageManager": "pnpm@11.9.0",
   "devEngines": {

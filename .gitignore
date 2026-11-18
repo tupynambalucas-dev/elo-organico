@@ -60,3 +60,12 @@ gha-creds-*.json
 # --- Persistent runtime ---
 data/
 logs/
+
+# --- Agent Plans & Temp Artifacts ---
+.agents/plans/
+.agents/temp/
+
+# --- Tools Runtime Data & Secrets ---
+tools/agents/infrastructure/data/
+tools/github/services/gh/config/secrets.env.json
+tools/github/services/gh/config/variables.env.json
