@@ -1,41 +1,33 @@
 # Changelog
 
-All updates, improvements, and new features of Elo Orgânico documented in the Knowledge Base.
+All notable changes to the `elo-organico` commercial SaaS platform will be documented in this file.
 
-## v0.1.0 - Architecture Foundation & Monorepo Genesis (2026-05-05)
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-The foundational release of Elo Orgânico (v0.1.0) establishes the core monorepo architecture, workspace isolation boundaries, and domain foundations for the local community shop and global platform hub.
+<!-- changelog-start -->
 
-{/_ truncate _/}
+## [0.1.0] - 2026-05-05
 
-### Monorepo Architecture & Bounded Contexts
+The foundational release of Elo Organico (`v0.1.0`) establishes the core monorepo architecture, workspace isolation boundaries, and domain foundations for the local community shop and global platform hub.
 
-- **Workspace Segregation**: Structured the monorepo using PNPM Workspaces v11 and Turborepo to segregate domains, local tooling, and design systems.
-- **Strict Bounded Contexts**: Enforced absolute separation of concerns between `instance` and `portal` code bases. Cross-workspace imports are restricted via static analysis (ESLint and TypeScript compiler constraints).
-- **Domain Core First**: Established `packages/core` within each context as the Single Source of Truth (SSOT) for data models, validation schemas, and interfaces, ensuring API and web interfaces compile against a shared type registry.
-- **Unified Dependency Management**: Implemented PNPM Catalogs to maintain version consistency for all third-party dependencies across the workspace packages.
+### Features & Capabilities
 
-### Instance Workspace (Community Shop)
+- [FEAT] (instance): Fastify v5 API server (`@elo-instance/api`) leveraging strict layered architecture (`Controller -> Service -> Repository -> Model`).
+- [FEAT] (instance): implement initial domains: `auth` (JWT session state), `product` (catalog & inventory), and `cycle` (cooperative cycles).
+- [FEAT] (web): frontend workspace `@elo-instance/web` using React 19 with CSS Modules, routing, and backend API integration.
+- [FEAT] (portal): global SaaS portal skeleton (`@elo-portal/api`, `@elo-portal/web`, and `@elo-portal/core`) with auth domain.
+- [FEAT] (studio): design tokens standardized in `@elo-studio/assets` and Penpot design ops integration.
+- [FEAT] (tooling): Model Context Protocol (MCP) SSE gateway for LLM client integration exposing GitHub, Context7, and Playwright interfaces.
 
-- **Layered Backend Architecture**: Implemented the Fastify v5 API server (`@elo-instance/api`) leveraging a strict layered architecture (`Controller -> Service -> Repository -> Model`).
-- **Domain Implementation**: Completed initial modules for:
-  - `auth`: JWT-based session state and credential verification.
-  - `product`: Local catalog schema and inventories.
-  - `cycle`: Governance structures for community sharing/cooperative agricultural cycles.
-- **Frontend Workspace**: Created `@elo-instance/web` using React 19, featuring styled interfaces with CSS Modules, routing for client views, and integration with the backend API. It features modules for authentication, user dashboard, shop checkout, and local administration.
+### Refactoring & Internal Architecture
 
-### Portal Workspace (Global SaaS Hub)
+- [REFACTOR] (monorepo): pnpm workspaces v11 and Turborepo task pipeline for workspace segregation.
+- [REFACTOR] (boundaries): strict bounded contexts between `instance` and `portal` codebases enforced via ESLint and TypeScript constraints.
+- [REFACTOR] (core): domain core first with `packages/core` as Single Source of Truth (SSOT) for data models and schemas.
 
-- **Base Infrastructure**: Structured the portal workspace skeleton (`@elo-portal/api`, `@elo-portal/web`, and `@elo-portal/core`).
-- **Authentication Skeleton**: Implemented the `auth` domain skeleton for portal accounts, establishing the architectural precedent for upcoming global SaaS modules.
+### Documentation & Specifications
 
-### Studio & Branding Assets
+- [DOCS] (knowledge-base): EloDocs Docusaurus developer portal for architectural references, guides, and style guides.
 
-- **Design Tokens**: Standardized colors, spacing, typography, and visual assets in `@elo-studio/assets` to export a unified theme.
-- **Design Ops Integration**: Deployed a self-hosted Penpot instance to maintain visual strategy designs and design-to-code asset generation.
-
-### Development Tooling & Context Gateways
-
-- **Orchestrated Environments**: Configured localized development stacks utilizing Docker Compose to provision services (Infra, API, and Web) cleanly with unified environment files.
-- **Model Context Protocol (MCP)**: Implemented an SSE-based Fastify gateway providing containerized LLM client integration with the workspace context, exposing GitHub API, Context7 documentation query, Playwright Browser automation, and Docker Hub registry interfaces.
-- **EloDocs Knowledge Base**: Configured Docusaurus as the central developer portal for architectural references, guides, and style guides.
+[0.1.0]: https://github.com/tupynambalucas-dev/elo-organico/releases/tag/v0.1.0
