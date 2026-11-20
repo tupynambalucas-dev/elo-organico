@@ -1,4 +1,4 @@
-# Changelog
+# Changelog - tupynambalucas-dev/elo-organico
 
 All notable changes to the `elo-organico` commercial SaaS platform will be documented in this file.
 
@@ -7,27 +7,40 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <!-- changelog-start -->
 
+## [0.2.0] - 2026-11-20
+
+### Features & Capabilities
+
+- [feat(git): adopt Evil Martians Lefthook for parallel pre-commit and commitlint #11](https://github.com/tupynambalucas-dev/elo-organico/pull/11)
+
+### Documentation & Specifications
+
+- [docs(governance): standardize github flow, workflows, and documentation #9](https://github.com/tupynambalucas-dev/elo-organico/pull/9)
+- [docs(changelog): upgrade to keep a changelog format #12](https://github.com/tupynambalucas-dev/elo-organico/pull/12)
+
+### Bug Fixes & Corrections
+
+- [fix(deps): bump mongoose from 9.7.3 to 9.11.4 #8](https://github.com/tupynambalucas-dev/elo-organico/pull/8)
+
+---
+
 ## [0.1.0] - 2026-05-05
 
 The foundational release of Elo Organico (`v0.1.0`) establishes the core monorepo architecture, workspace isolation boundaries, and domain foundations for the local community shop and global platform hub.
 
 ### Features & Capabilities
 
-- [FEAT] (instance): Fastify v5 API server (`@elo-instance/api`) leveraging strict layered architecture (`Controller -> Service -> Repository -> Model`).
-- [FEAT] (instance): implement initial domains: `auth` (JWT session state), `product` (catalog & inventory), and `cycle` (cooperative cycles).
-- [FEAT] (web): frontend workspace `@elo-instance/web` using React 19 with CSS Modules, routing, and backend API integration.
-- [FEAT] (portal): global SaaS portal skeleton (`@elo-portal/api`, `@elo-portal/web`, and `@elo-portal/core`) with auth domain.
-- [FEAT] (studio): design tokens standardized in `@elo-studio/assets` and Penpot design ops integration.
-- [FEAT] (tooling): Model Context Protocol (MCP) SSE gateway for LLM client integration exposing GitHub, Context7, and Playwright interfaces.
+- [feat(instance): Fastify v5 API server leveraging strict layered architecture](https://github.com/tupynambalucas-dev/elo-organico/commit/49ae855)
+- [feat(instance): implement initial domains: auth (JWT session state), product, and cycle](https://github.com/tupynambalucas-dev/elo-organico/commit/531ad0d)
+- [feat(web): frontend workspace using React 19 with CSS Modules, routing, and backend API integration](https://github.com/tupynambalucas-dev/elo-organico/commit/dbcba51)
+- [feat(portal): global SaaS portal skeleton with auth domain](https://github.com/tupynambalucas-dev/elo-organico/commit/8a18075)
+- [feat(studio): design tokens standardized in assets and Penpot design ops integration](https://github.com/tupynambalucas-dev/elo-organico/commit/c4718a5)
 
 ### Refactoring & Internal Architecture
 
-- [REFACTOR] (monorepo): pnpm workspaces v11 and Turborepo task pipeline for workspace segregation.
-- [REFACTOR] (boundaries): strict bounded contexts between `instance` and `portal` codebases enforced via ESLint and TypeScript constraints.
-- [REFACTOR] (core): domain core first with `packages/core` as Single Source of Truth (SSOT) for data models and schemas.
+- [refactor(monorepo): pnpm workspaces v11 and Turborepo task pipeline for workspace segregation](https://github.com/tupynambalucas-dev/elo-organico/commit/1f9d2ef)
+- [refactor(boundaries): strict bounded contexts between instance and portal codebases](https://github.com/tupynambalucas-dev/elo-organico/commit/3af302b)
+- [refactor(core): domain core first with packages/core as Single Source of Truth](https://github.com/tupynambalucas-dev/elo-organico/commit/9c99bf8)
 
-### Documentation & Specifications
-
-- [DOCS] (knowledge-base): EloDocs Docusaurus developer portal for architectural references, guides, and style guides.
-
+[0.2.0]: https://github.com/tupynambalucas-dev/elo-organico/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/tupynambalucas-dev/elo-organico/releases/tag/v0.1.0
