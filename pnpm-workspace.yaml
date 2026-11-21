@@ -150,6 +150,7 @@ allowBuilds:
   'bcrypt': true
   'core-js': true
   'esbuild': true
+  'lefthook': true
   'msgpackr-extract': true
   'sharp': true
   'unrs-resolver': true
