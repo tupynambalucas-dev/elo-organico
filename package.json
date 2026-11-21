@@ -98,7 +98,7 @@
     "version:bump": "changeset version",
     "version:publish": "changeset publish",
     "project:clear": "pnpm dlx npkill",
-    "husky:test": "tsx tools/scripts/test-hooks.ts",
+    "prepare": "lefthook install",
     "git:ignore-compiled-docs": "git update-index --skip-worktree CHANGELOG.md ROADMAP.md",
     "git:track-compiled-docs": "git update-index --no-skip-worktree CHANGELOG.md ROADMAP.md",
     "build": "turbo run build",
@@ -122,9 +122,8 @@
     "eslint-plugin-react": "catalog:web-stack",
     "eslint-plugin-react-hooks": "catalog:web-stack",
     "eslint-plugin-react-refresh": "catalog:web-stack",
-    "husky": "catalog:",
     "kill-port": "catalog:",
-    "lint-staged": "catalog:",
+    "lefthook": "catalog:",
     "prettier": "catalog:tooling-stack",
     "rimraf": "catalog:",
     "tsx": "catalog:",
@@ -133,13 +132,5 @@
     "typescript-eslint": "catalog:tooling-stack",
     "wrangler": "catalog:"
   },
-  "prettier": "@elo-shared/config",
-  "lint-staged": {
-    "**/*.{js,mjs,ts,tsx,mdx}": [
-      "eslint --fix --no-warn-ignored"
-    ],
-    "**/*.{json,yaml,md,css,html}": [
-      "prettier --write --ignore-path shared/config/.prettierignore"
-    ]
-  }
+  "prettier": "@elo-shared/config"
 }

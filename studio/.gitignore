@@ -4,8 +4,8 @@ dist/
 *.tsbuildinfo
 
 # Ignore Studio's local development files
-three/
-raw/
-images/
+/three/
+/raw/
+/images/
 
 # Keep studio/assets/ tracked in GitHub

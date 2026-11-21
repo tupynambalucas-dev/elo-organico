@@ -44,12 +44,11 @@ export class CycleController {
       createdAt: obj.createdAt?.toISOString(),
       updatedAt: obj.updatedAt?.toISOString(),
       products: Array.isArray(obj.products)
-        ? obj.products.map((p: unknown) => {
-            if (!p) return null;
+        ? obj.products
+            .map((p: unknown) => {
+              if (!p) return null;
 
-            // Type narrowing seguro para evitar avisos de overlap
-            if (typeof p === 'object') {
-              if ('_id' in p) {
+              if (typeof p === 'object' && '_id' in p) {
                 if ('name' in p) {
                   const product = p as IProduct & {
                     _id: Types.ObjectId | string;
@@ -74,15 +73,14 @@ export class CycleController {
                 }
                 return (p as { _id: Types.ObjectId | string })._id.toString();
               }
-            }
 
-            // Fallback seguro para strings e primitivos
-            if (typeof p === 'string' || typeof p === 'number' || typeof p === 'boolean') {
-              return String(p);
-            }
+              if (typeof p === 'string' || typeof p === 'number' || typeof p === 'boolean') {
+                return String(p);
+              }
 
-            return null;
-          })
+              return null;
+            })
+            .filter((p): p is Exclude<typeof p, null> => p !== null)
         : [],
     };
   }
