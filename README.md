@@ -102,7 +102,7 @@ All runtime secrets and service connections resolve via **Infisical** or local `
 ### Installation & Local Startup
 
 ```bash
-# 1. Clone the repository (or sync via org-ecosystem Mani manifest)
+# 1. Clone the repository (or sync via ecosystem Mani manifest)
 git clone git@github.com:tupynambalucas-dev/elo-organico.git
 cd elo-organico
 
