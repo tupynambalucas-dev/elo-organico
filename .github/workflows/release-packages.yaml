@@ -38,7 +38,7 @@ jobs:
           private-key: ${{ secrets.CI_BOT_PRIVATE_KEY }}
 
       - name: Process Bumps and Generate Release PR
-        uses: changesets/action@a45c4d594aa4e2c509dc14a9f2b3b67ba3780d0d # v1.5.1
+        uses: changesets/action@ae32849d5ba541f9ae29e40e22a623bc13562f51 # v1.5.1
         with:
           version: pnpm version:bump
           commit: 'chore(release): bump package versions and update changelogs'
